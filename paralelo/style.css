@@ -83,6 +83,19 @@ h2 {
   color: var(--muted);
   line-height: 1.7;
 }
+.hero-author {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.hero-author strong {
+  color: var(--text);
+  font-weight: 700;
+}
+.hero-author-handle {
+  color: var(--blue);
+  font-weight: 600;
+}
 
 /* STORY BLOCK */
 .story-block {
