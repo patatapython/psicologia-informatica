@@ -3,118 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tu cerebro tiene un bug · psicología_informática</title>
+  <title>Tu cerebro tiene un bug — Psicología Informática</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav>
-  <span class="nav-logo"><span>~/</span>psicología_informática</span>
-  <span class="nav-ep">ep. 01 · procrastinación</span>
-</nav>
-
 <!-- HERO -->
-<div class="hero">
-  <p class="hero-tag">// episodio 01 · análisis de sistema</p>
-  <h1>Tu cerebro<br>tiene un <span class="bug-word">bug</span></h1>
+<header class="hero">
+  <p class="hero-label">Psicología Informática · Episodio 01</p>
+  <h1>Tu cerebro tiene un <span class="accent-word">bug</span></h1>
   <p class="hero-sub">
-    Llevas días sin hacer algo que sabes que tienes que hacer.
-    No es pereza. Es un bucle infinito con un fallo lógico concreto.
-    Y los fallos lógicos se arreglan.
+    Llevas días sin hacer algo que sabes que tienes que hacer.<br>
+    No es pereza. Es un bucle con un fallo lógico concreto. Y los fallos lógicos se arreglan.
   </p>
-  <blockquote class="hero-quote">
-    "Sé que lo tengo que hacer, sé que lo haré, pero pierdo mucho tiempo
-    y fuerzas en excusas cuando lo podría haber hecho a la primera."
-  </blockquote>
-</div>
+  <p class="hero-author">por <strong>Guillermo Manzanares</strong> · <a href="https://github.com/patatapython" target="_blank" rel="noopener" class="hero-author-handle">Patatapython</a></p>
+  <a href="tech/index.html" class="version-link">&lt;/&gt; ver versión técnica</a>
+</header>
 
-<hr class="div">
+<hr class="divider">
 
-<!-- DIAGRAMA -->
-<section class="fi">
+<!-- LA HISTORIA -->
+<section class="section">
   <div class="wrap">
-    <p class="section-label">// visualización interactiva</p>
-    <h2>El sistema en tiempo real</h2>
-    <p class="section-desc">
-      Escribe la tarea que llevas aplazando. El diagrama y el panel de información se adaptarán a tu caso concreto.
-      Después, pulsa cualquier nodo para ver qué pasa exactamente en esa fase del bucle.
+    <h2>La historia</h2>
+    <p class="section-intro">
+      El siguiente relato es real. Léelo despacio — es probable que reconozcas el patrón.
+    </p>
+    <div class="story-block">
+      <p><strong>Historia cotidiana que me genera estrés:</strong> debo apuntarme a la academia de inglés porque sé que va a ser bueno para mí, para mejorar y refrescar mi nivel en pos de buscar nuevos empleos. La idea de hacer algo nuevo que no controlo me pone nervioso y me produce estrés, por lo que, en un primer momento, lo rechazo: no quiero ir, ya iré mañana, etc.</p>
+      <p>Una vez que decido no hacerlo me siento bien, liberado, quizá eufórico, porque el mal — el foco del estrés — ya ha pasado. Es un gran momento. Hasta que llega la hora de volver a enfrentarse a ello. Mi cabeza sabe que tengo que ir, que es bueno para mí y, sobre todo, que lo voy a terminar haciendo; pero, por otro lado, vuelvo al bucle del estrés: no controlo la situación, qué le voy a decir a la de recepción, qué me va a contar, qué horarios tendrá, etc.</p>
+      <p>Total, que termino yendo a la academia a preguntar y todo bien, normal. Me ofrecen hacer una prueba de nivel y me voy de allí con el cerebro descansado. Vale, ya he cumplido, ya he dado el paso, ya estoy liberado... igual que si no hubiera ido y lo hubiera pospuesto. <em>Es la misma sensación, pero esta vez con el trabajo hecho.</em></p>
+      <p>Pero ahora estoy en el momento en que tengo que pedir cita para que me hagan la prueba de nivel y vuelvo a entrar en el bucle del "no quiero ir", "qué me van a decir", "no sé nada", "me pondrán con gente más lista"... Multitud de excusas para no ir, para posponer la situación que me genera estrés. Lo he ido posponiendo toda la semana pasada; además, me propuse estudiar un poco para pasar la prueba en condiciones y no toqué un libro, ni hice nada. Sabía cada día que tenía que hacerlo, pero siempre encuentro excusas para no hacerlo, y cuando acepto la excusa puesta por mi cerebro, me siento bien hasta el siguiente bucle de reproche.</p>
+      <p>Hoy tenemos que estudiar para poder ir preparados a la academia a que nos den hora para el examen de nivel, que ya perdimos un día. Y vuelve el bucle: "bueno, ya empezamos mañana, que hoy tengo que hacer X cosas", porque estoy sintiendo la presión de que tengo que hacerlo. En cuanto acepto la disculpa, aparece nuevamente el placer o la satisfacción de haber esquivado el foco de la angustia del estrés. Y así, sucesivamente, el bucle.</p>
+      <p class="story-final">Sé que lo tengo que hacer, sé que lo haré porque lo haré, pero pierdo mucho tiempo y fuerzas en excusas cuando lo podría haber hecho a la primera, sin estar días perdiendo tiempo y energías, generándome problemas y frustraciones.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EL BUCLE -->
+<section class="section section-alt">
+  <div class="wrap">
+    <h2>El bucle, paso a paso</h2>
+    <p class="section-intro">
+      Lo que se describe tiene una mecánica concreta con seis fases que se repiten. Pulsa cualquier fase del diagrama para entender qué ocurre exactamente en ese punto.
     </p>
 
-    <!-- MODE TOGGLE -->
-    <div class="mode-switch">
-      <button class="ms-btn ms-active ms-tech" id="btn-tech">&lt;/&gt; técnico</button>
-      <button class="ms-btn ms-human" id="btn-human">≡ humano</button>
-    </div>
-
-    <!-- TASK INPUT -->
-    <div class="task-form">
-      <div class="tf-comment">// define tu bucle · cuantos más datos, más personalizado el análisis</div>
-      <div class="tf-field">
-        <span class="tf-key">task</span>
-        <span class="tf-eq">=</span>
-        <input id="tf-task" class="tf-input tf-main" type="text"
-               placeholder="apuntarme a inglés, enviar el email del trabajo, ir al médico..."
-               maxlength="55"/>
-      </div>
-      <div class="chip-group">
-        <span class="chip-label">¿qué te bloquea?</span>
-        <div class="chips" id="chips-block">
-          <button class="chip" data-val="no sé qué va a pasar">No sé qué va a pasar</button>
-          <button class="chip" data-val="me van a juzgar">Me van a juzgar</button>
-          <button class="chip" data-val="no estoy preparado">No estoy preparado</button>
-          <button class="chip" data-val="es demasiado">Es demasiado</button>
-          <button class="chip" data-val="voy a fracasar">Voy a fracasar</button>
-        </div>
-      </div>
-      <div class="chip-group">
-        <span class="chip-label">¿cuál es tu excusa?</span>
-        <div class="chips" id="chips-excuse">
-          <button class="chip" data-val="ya lo haré mañana">Ya lo haré mañana</button>
-          <button class="chip" data-val="hoy no puedo, tengo cosas">Hoy no puedo</button>
-          <button class="chip" data-val="primero necesito organizarme">Primero necesito organizarme</button>
-          <button class="chip" data-val="no es buen momento">No es buen momento</button>
-        </div>
-      </div>
-      <div class="tf-actions">
-        <button id="task-btn" class="tf-btn">generar mi bucle →</button>
-      </div>
-      <div class="tf-feedback" id="tf-fb">Solo <code style="color:var(--cyan);font-size:0.72rem">task</code> es obligatorio. Los demás campos añaden contexto al análisis y al panel de información.</div>
-    </div>
-
     <!-- CONTROLS -->
-    <div class="diag-controls" style="margin-top:1.25rem">
+    <div class="diag-controls">
       <div class="diag-status">
-        <div class="blink-dot" id="d-dot"></div>
-        <span id="d-txt" style="font-size:0.78rem;">
-          procrastination_loop.py &nbsp;·&nbsp;
-          <span style="color:var(--red)">running · iteración <span id="d-iter">1</span></span>
-        </span>
+        <div class="status-dot" id="d-dot"></div>
+        <span id="d-txt">El bucle está activo &middot; iteración <span id="d-iter">1</span></span>
       </div>
       <div class="diag-btns">
-        <button class="d-btn d-tour" id="btn-tour">Paso a paso →</button>
-        <button class="d-btn d-bug" id="btn-bug">Ver el bug</button>
-        <button class="d-btn" id="btn-pause">⏸ pausar</button>
-        <button class="d-btn" id="btn-fix">Romper el bucle →</button>
+        <button class="btn btn-tour" id="btn-tour">Paso a paso →</button>
+        <button class="btn btn-stress" id="btn-bug">Ver el bucle</button>
+        <button class="btn" id="btn-pause">Pausar</button>
+        <button class="btn" id="btn-fix">Romper el bucle</button>
       </div>
     </div>
 
-    <!-- LIVE COUNTERS -->
+    <!-- COUNTERS -->
     <div class="counters-bar" id="counters-bar">
       <div class="c-item">
-        <span class="c-label">difficulty <span class="c-label-es">(dificultad percibida)</span></span>
-        <span class="c-val" id="cv-diff" style="color:#f87171">1.0×</span>
+        <span class="c-label">Dificultad percibida</span>
+        <span class="c-val" id="cv-diff">1.0x</span>
       </div>
       <div class="c-item">
-        <span class="c-label">guilt <span class="c-label-es">(culpa acumulada)</span></span>
-        <span class="c-val" id="cv-guilt" style="color:#fbbf24">0.0</span>
+        <span class="c-label">Culpa acumulada</span>
+        <span class="c-val c-val-warn" id="cv-guilt">0.0</span>
       </div>
       <div class="c-item">
-        <span class="c-label">threshold <span class="c-label-es">(umbral de tolerancia)</span></span>
-        <span class="c-val" id="cv-thresh" style="color:var(--muted)">0.50</span>
+        <span class="c-label">Umbral de tolerancia</span>
+        <span class="c-val c-val-neutral" id="cv-thresh">0.50</span>
       </div>
       <div class="c-item">
-        <span class="c-label">days_lost <span class="c-label-es">(días sin resolver)</span></span>
-        <span class="c-val" id="cv-days" style="color:#f87171">0</span>
+        <span class="c-label">Días sin resolver</span>
+        <span class="c-val" id="cv-days">0</span>
       </div>
     </div>
 
@@ -125,16 +92,16 @@
              style="width:100%;display:block;max-height:72vh;">
           <defs>
             <marker id="af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-              <path d="M0,0 L10,5 L0,10 z" fill="#3d5570"/>
+              <path d="M0,0 L10,5 L0,10 z" fill="#cbd5e0"/>
             </marker>
             <marker id="al" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-              <path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/>
+              <path d="M0,0 L10,5 L0,10 z" fill="#e07a5f"/>
             </marker>
             <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-              <path d="M0,0 L10,5 L0,10 z" fill="#22c55e"/>
+              <path d="M0,0 L10,5 L0,10 z" fill="#6b9f78"/>
             </marker>
             <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="4" result="b"/>
+              <feGaussianBlur stdDeviation="3.5" result="b"/>
               <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
           </defs>
@@ -142,106 +109,102 @@
           <!-- loop-back spine -->
           <g id="g-lb" style="transition:opacity 0.6s">
             <path d="M155,562 L30,562 L30,163 L80,163"
-              stroke="#ef4444" stroke-width="1.5" fill="none"
+              stroke="#e07a5f" stroke-width="1.5" fill="none"
               stroke-dasharray="7,4" marker-end="url(#al)"/>
             <text transform="translate(18,390) rotate(-90)" text-anchor="middle"
-              fill="#ef4444" opacity="0.6" font-family="Courier New,monospace" font-size="8">goto fase_02</text>
+              fill="#e07a5f" opacity="0.5" font-family="'Open Sans',sans-serif" font-size="8">vuelve al inicio</text>
           </g>
 
           <!-- flow arrows -->
-          <line x1="155" y1="86"  x2="155" y2="136" stroke="#3d5570" stroke-width="1.5" marker-end="url(#af)"/>
-          <line x1="155" y1="186" x2="155" y2="236" stroke="#3d5570" stroke-width="1.5" marker-end="url(#af)"/>
-          <line x1="155" y1="286" x2="155" y2="336" stroke="#3d5570" stroke-width="1.5" marker-end="url(#af)"/>
-          <line x1="155" y1="386" x2="155" y2="426" stroke="#3d5570" stroke-width="1.5" marker-end="url(#af)"/>
-          <line x1="155" y1="474" x2="155" y2="514" stroke="#3d5570" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="86"  x2="155" y2="136" stroke="#cbd5e0" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="186" x2="155" y2="236" stroke="#cbd5e0" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="286" x2="155" y2="336" stroke="#cbd5e0" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="386" x2="155" y2="426" stroke="#cbd5e0" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="474" x2="155" y2="514" stroke="#cbd5e0" stroke-width="1.5" marker-end="url(#af)"/>
 
           <!-- break arrows (fix mode) -->
           <g id="g-brk" style="opacity:0;transition:opacity 0.5s 0.3s">
-            <line x1="230" y1="163" x2="268" y2="163" stroke="#22c55e" stroke-width="2" marker-end="url(#ab)"/>
-            <line x1="230" y1="261" x2="268" y2="261" stroke="#22c55e" stroke-width="2" marker-end="url(#ab)"/>
-            <line x1="230" y1="449" x2="268" y2="449" stroke="#22c55e" stroke-width="2" marker-end="url(#ab)"/>
+            <line x1="230" y1="163" x2="268" y2="163" stroke="#6b9f78" stroke-width="2" marker-end="url(#ab)"/>
+            <line x1="230" y1="261" x2="268" y2="261" stroke="#6b9f78" stroke-width="2" marker-end="url(#ab)"/>
+            <line x1="230" y1="449" x2="268" y2="449" stroke="#6b9f78" stroke-width="2" marker-end="url(#ab)"/>
           </g>
 
           <!-- patch circles (fix mode) -->
           <g id="g-patches" style="opacity:0;transition:opacity 0.5s 0.6s">
-            <g data-node="p1" style="cursor:pointer">
-              <circle cx="283" cy="163" r="11" fill="rgba(20,83,45,0.6)" stroke="#22c55e" stroke-width="1.5"/>
-              <text x="283" y="167" fill="#4ade80" font-family="Courier New,monospace" font-size="8" font-weight="bold" text-anchor="middle">P1</text>
+            <g data-node="p1" style="cursor:pointer" role="button" tabindex="0" aria-label="Ver solución 1: Separa la tarea">
+              <circle cx="283" cy="163" r="11" fill="rgba(107,159,120,0.15)" stroke="#6b9f78" stroke-width="1.5"/>
+              <text x="283" y="167" fill="#6b9f78" font-family="'Open Sans',sans-serif" font-size="8" font-weight="bold" text-anchor="middle">P1</text>
             </g>
-            <g data-node="p2" style="cursor:pointer">
-              <circle cx="283" cy="261" r="11" fill="rgba(20,83,45,0.6)" stroke="#22c55e" stroke-width="1.5"/>
-              <text x="283" y="265" fill="#4ade80" font-family="Courier New,monospace" font-size="8" font-weight="bold" text-anchor="middle">P2</text>
+            <g data-node="p2" style="cursor:pointer" role="button" tabindex="0" aria-label="Ver solución 2: Mueve la recompensa">
+              <circle cx="283" cy="261" r="11" fill="rgba(107,159,120,0.15)" stroke="#6b9f78" stroke-width="1.5"/>
+              <text x="283" y="265" fill="#6b9f78" font-family="'Open Sans',sans-serif" font-size="8" font-weight="bold" text-anchor="middle">P2</text>
             </g>
-            <g data-node="p3" style="cursor:pointer">
-              <circle cx="283" cy="449" r="11" fill="rgba(20,83,45,0.6)" stroke="#22c55e" stroke-width="1.5"/>
-              <text x="283" y="453" fill="#4ade80" font-family="Courier New,monospace" font-size="8" font-weight="bold" text-anchor="middle">P3</text>
+            <g data-node="p3" style="cursor:pointer" role="button" tabindex="0" aria-label="Ver solución 3: Suelta la culpa">
+              <circle cx="283" cy="449" r="11" fill="rgba(107,159,120,0.15)" stroke="#6b9f78" stroke-width="1.5"/>
+              <text x="283" y="453" fill="#6b9f78" font-family="'Open Sans',sans-serif" font-size="8" font-weight="bold" text-anchor="middle">P3</text>
             </g>
           </g>
 
           <!-- NODES -->
-          <g data-node="dis" id="nd-dis">
-            <rect class="node-rect" x="55" y="38" width="200" height="48" rx="8"
-              fill="#0b1525" stroke="#3b82f6" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
-            <text id="t-dis" x="155" y="58" fill="#3b82f6" font-family="Courier New,monospace"
-              font-size="8.5" text-anchor="middle">task_received("inglés")</text>
-            <text x="155" y="74" fill="#e2e8f0" font-family="system-ui,sans-serif"
+          <g data-node="dis" id="nd-dis" role="button" tabindex="0" aria-label="Ver detalles: El Disparador">
+            <rect class="node-rect" x="55" y="38" width="200" height="48" rx="10"
+              fill="#ffffff" stroke="#2ea3f2" stroke-width="1.5"/>
+            <text x="155" y="58" fill="#2ea3f2" font-family="'Open Sans',sans-serif"
+              font-size="8.5" text-anchor="middle">Aparece la tarea</text>
+            <text x="155" y="74" fill="#2d3748" font-family="'Open Sans',sans-serif"
               font-size="12" font-weight="700" text-anchor="middle">El Disparador</text>
-            <text x="244" y="51" fill="#3b82f6" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
           </g>
 
-          <g data-node="ame" id="nd-ame">
-            <rect class="node-rect" id="bx-ame" x="55" y="138" width="200" height="48" rx="8"
-              fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
-            <text id="t-ame" x="155" y="158" fill="#8899b0" font-family="Courier New,monospace"
-              font-size="8.5" text-anchor="middle">if stress &gt; threshold</text>
-            <text x="155" y="174" fill="#e2e8f0" font-family="system-ui,sans-serif"
+          <g data-node="ame" id="nd-ame" role="button" tabindex="0" aria-label="Ver detalles: La Amenaza">
+            <rect class="node-rect" id="bx-ame" x="55" y="138" width="200" height="48" rx="10"
+              fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+            <text x="155" y="158" fill="#718096" font-family="'Open Sans',sans-serif"
+              font-size="8.5" text-anchor="middle">El estrés supera tu límite</text>
+            <text x="155" y="174" fill="#2d3748" font-family="'Open Sans',sans-serif"
               font-size="12" font-weight="700" text-anchor="middle">La Amenaza</text>
-            <text x="244" y="151" fill="#eab308" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
           </g>
 
-          <g data-node="eva" id="nd-eva">
-            <rect class="node-rect" id="bx-eva" x="55" y="238" width="200" height="48" rx="8"
-              fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
-            <text id="t-eva" x="155" y="258" fill="#8899b0" font-family="Courier New,monospace"
-              font-size="8.5" text-anchor="middle">avoid("inglés")</text>
-            <text x="155" y="274" fill="#e2e8f0" font-family="system-ui,sans-serif"
+          <g data-node="eva" id="nd-eva" role="button" tabindex="0" aria-label="Ver detalles: La Evasión">
+            <rect class="node-rect" id="bx-eva" x="55" y="238" width="200" height="48" rx="10"
+              fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+            <text x="155" y="258" fill="#718096" font-family="'Open Sans',sans-serif"
+              font-size="8.5" text-anchor="middle">La excusa llega sola</text>
+            <text x="155" y="274" fill="#2d3748" font-family="'Open Sans',sans-serif"
               font-size="12" font-weight="700" text-anchor="middle">La Evasión</text>
-            <text x="244" y="251" fill="#ef4444" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
           </g>
 
-          <g data-node="ali" id="nd-ali">
-            <rect class="node-rect" id="bx-ali" x="55" y="338" width="200" height="48" rx="8"
-              fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
-            <text id="t-ali" x="155" y="358" fill="#8899b0" font-family="Courier New,monospace"
-              font-size="8.5" text-anchor="middle">release_dopamine("evasión")</text>
-            <text x="155" y="374" fill="#e2e8f0" font-family="system-ui,sans-serif"
+          <g data-node="ali" id="nd-ali" role="button" tabindex="0" aria-label="Ver detalles: El Alivio">
+            <rect class="node-rect" id="bx-ali" x="55" y="338" width="200" height="48" rx="10"
+              fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+            <text x="155" y="358" fill="#718096" font-family="'Open Sans',sans-serif"
+              font-size="8.5" text-anchor="middle">Alivio inmediato</text>
+            <text x="155" y="374" fill="#2d3748" font-family="'Open Sans',sans-serif"
               font-size="12" font-weight="700" text-anchor="middle">El Alivio</text>
-            <text x="244" y="351" fill="#22c55e" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
           </g>
 
-          <g data-node="cul" id="nd-cul">
-            <rect class="node-rect" id="bx-cul" x="55" y="426" width="200" height="48" rx="8"
-              fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
-            <text id="t-cul" x="155" y="446" fill="#8899b0" font-family="Courier New,monospace"
-              font-size="8.5" text-anchor="middle">guilt += 0.1</text>
-            <text x="155" y="462" fill="#e2e8f0" font-family="system-ui,sans-serif"
+          <g data-node="cul" id="nd-cul" role="button" tabindex="0" aria-label="Ver detalles: La Culpa">
+            <rect class="node-rect" id="bx-cul" x="55" y="426" width="200" height="48" rx="10"
+              fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+            <text x="155" y="446" fill="#718096" font-family="'Open Sans',sans-serif"
+              font-size="8.5" text-anchor="middle">La culpa se acumula</text>
+            <text x="155" y="462" fill="#2d3748" font-family="'Open Sans',sans-serif"
               font-size="12" font-weight="700" text-anchor="middle">La Culpa</text>
-            <text x="244" y="439" fill="#eab308" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
           </g>
 
-          <g data-node="reb" id="nd-reb">
-            <rect class="node-rect" id="bx-reb" x="55" y="514" width="200" height="48" rx="8"
-              fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
-            <text id="t-reb" x="155" y="534" fill="#8899b0" font-family="Courier New,monospace"
-              font-size="8.5" text-anchor="middle">difficulty *= 1.2</text>
-            <text x="155" y="550" fill="#e2e8f0" font-family="system-ui,sans-serif"
+          <g data-node="reb" id="nd-reb" role="button" tabindex="0" aria-label="Ver detalles: El Rebote">
+            <rect class="node-rect" id="bx-reb" x="55" y="514" width="200" height="48" rx="10"
+              fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+            <text x="155" y="534" fill="#718096" font-family="'Open Sans',sans-serif"
+              font-size="8.5" text-anchor="middle">Todo parece más difícil</text>
+            <text x="155" y="550" fill="#2d3748" font-family="'Open Sans',sans-serif"
               font-size="12" font-weight="700" text-anchor="middle">El Rebote</text>
-            <text x="244" y="527" fill="#ef4444" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
           </g>
 
           <!-- token -->
-          <circle id="tok" cx="155" cy="163" r="9" fill="#06b6d4" filter="url(#glow)" opacity="0.95"/>
+          <circle id="tok" cx="155" cy="163" r="9" fill="#2ea3f2" filter="url(#glow)" opacity="0.9"/>
         </svg>
+        <div class="node-badge" aria-hidden="true">Pulsa una fase para ver el análisis →</div>
+        <p class="diag-hint">Pulsa cualquier fase para ver el análisis detallado</p>
       </div>
 
       <!-- INFO PANEL -->
@@ -252,11 +215,11 @@
               <div class="panel-fase" id="p-fase"></div>
               <div class="panel-title" id="p-title"></div>
             </div>
-            <button class="panel-close" id="panel-close">×</button>
+            <button class="panel-close" id="panel-close">&times;</button>
           </div>
-          <div id="p-code-wrap"></div>
+          <div class="panel-subtitle" id="p-subtitle"></div>
           <p class="panel-story" id="p-story"></p>
-          <div class="panel-vars-title" id="p-vars-title">variables · estado del sistema</div>
+          <div class="panel-vars-title" id="p-vars-title">Qué está pasando</div>
           <div id="p-vars"></div>
           <div class="panel-note" id="p-note"></div>
           <div class="panel-nav" id="panel-nav">
@@ -268,80 +231,72 @@
       </div>
     </div><!-- /diag-wrap -->
 
-    <!-- CONSOLE LOG -->
-    <div class="console-log" id="console-log">
-      <div class="console-header">&gt;_ system.log</div>
-      <div class="console-body" id="console-body">
-        <div class="log-line"><span class="log-muted">proceso iniciado · esperando iteraciones...</span></div>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<hr class="div">
+<hr class="divider">
 
-<!-- CÓMO ROMPER EL BUCLE -->
-<section class="fi">
+<!-- COMO ROMPER EL BUCLE -->
+<section class="section">
   <div class="wrap">
-    <p class="section-label">// fix disponible</p>
     <h2>Cómo romper el bucle</h2>
-    <p class="section-desc">La fuerza de voluntad no es la solución — si lo fuera, ya lo habrías hecho. Tres intervenciones en tres puntos distintos. Ninguna requiere motivación.</p>
+    <p class="section-intro">
+      La fuerza de voluntad no es la solución — si lo fuera, ya lo habrías hecho. Tres intervenciones en tres puntos distintos del bucle. Ninguna requiere motivación.
+    </p>
     <div class="patches">
+
       <div class="patch">
-        <div class="patch-tag">PATCH 1</div>
-        <div>
-          <div class="patch-name">task.split() · Separa la tarea de todo lo que imaginas alrededor</div>
-          <div class="patch-body">
-            El estrés no viene de la tarea en sí — viene de todo lo que tu cerebro proyecta alrededor: qué me van a decir, cómo será, qué pasa si no sé, me pondrán con gente mejor... Eso es lo que dispara la alarma. La tarea real es mucho más pequeña que la tarea imaginada.<br><br>
-            El fix: <em>no encarar todo eso de golpe</em>. Solo la primera acción concreta, la que puedes hacer ahora mismo sin que tu cerebro la detecte como amenaza.<br><br>
-            <span class="inline-code">micro = task.split() → solo el primer paso concreto → stress &lt; threshold</span>
-          </div>
-          <div class="patch-example">
-            <div class="patch-example-title">// ejemplo: te da miedo conducir</div>
-            <div class="patch-steps">
-              <div class="patch-step"><span class="patch-step-n">01</span> Coger las llaves y bajar al coche. Solo eso.</div>
-              <div class="patch-step"><span class="patch-step-n">02</span> Sentarte dentro, poner el cinturón, arrancar. No irte — solo arrancar.</div>
-              <div class="patch-step"><span class="patch-step-n">03</span> Salir del garaje y volver a entrar. Ya has conducido.</div>
-              <div class="patch-step"><span class="patch-step-n">04</span> Mañana: dar la vuelta a la manzana. El paso 03 ya no da miedo.</div>
-            </div>
-            <div class="patch-example-note">Cada paso es tan pequeño que tu cerebro no lo detecta como amenaza. Cuando quieres darte cuenta, ya estás en movimiento.</div>
-          </div>
+        <div class="patch-number">1</div>
+        <div class="patch-content">
+          <h3 class="patch-name">Separa la tarea de todo lo que imaginas alrededor</h3>
+          <p class="patch-body">
+            El estrés no viene de la tarea en sí — viene de todo lo que tu cerebro proyecta alrededor: qué me van a decir, cómo será, qué pasa si no sé, me pondrán con gente mejor... Eso es lo que dispara la alarma. La tarea real es mucho más pequeña que la tarea imaginada.
+          </p>
+          <p class="patch-body">
+            <strong>El fix:</strong> no encarar todo eso de golpe. Solo la primera acción concreta, la que puedes hacer ahora mismo sin que tu cerebro la detecte como amenaza. No "apuntarme a inglés" (que incluye ir, hablar, hacer la prueba, empezar clases...) sino solo "buscar el teléfono de una academia". Eso no da miedo. Y una vez en movimiento, el siguiente paso tampoco da tanto.
+          </p>
         </div>
       </div>
+
       <div class="patch">
-        <div class="patch-tag">PATCH 2</div>
-        <div>
-          <div class="patch-name">release_dopamine("logro") · Mueve la recompensa</div>
-          <div class="patch-body">
-            El bug da dopamina por evitar. El fix la mueve al momento de empezar. Condición: que sea <em>inmediata y física</em>.<br><br>
-            "Cuando abra el libro, me pongo un café." Tu cerebro conecta esa recompensa con el acto de empezar. Con repetición, empezar compite con evitar como fuente de alivio.<br><br>
-            <span class="inline-code">reward = on_execute, not on_avoid</span>
-          </div>
+        <div class="patch-number">2</div>
+        <div class="patch-content">
+          <h3 class="patch-name">Mueve la recompensa al momento de empezar</h3>
+          <p class="patch-body">
+            El error: tu cerebro recibe recompensa por evitar. El fix: mover esa recompensa al momento de empezar. Pero tiene que ser inmediata y concreta.
+          </p>
+          <p class="patch-body">
+            "Cuando abra el libro, me pongo la playlist que me gusta." "Cuando me siente a hacerlo, me preparo un café." Tu cerebro aprende: empezar = algo bueno. No necesitas motivación — necesitas reconfigurar cuándo llega el alivio.
+          </p>
         </div>
       </div>
+
       <div class="patch">
-        <div class="patch-tag">PATCH 3</div>
-        <div>
-          <div class="patch-name">gc.collect(guilt) · Suelta la culpa</div>
-          <div class="patch-body">
-            La culpa acumulada es memoria sin liberar: sube el estrés y baja tu tolerancia. El bucle se activa cada vez con menos estímulo.<br><br>
-            Tratarte bien ante el fallo mejora el rendimiento futuro (Neff, 2012). No es blandura — es eficiencia. El bug está en el código, no en ti.<br><br>
-            <span class="inline-code">self.guilt = 0 // liberar para el próximo intento</span>
-          </div>
+        <div class="patch-number">3</div>
+        <div class="patch-content">
+          <h3 class="patch-name">Suelta la culpa — no es información útil</h3>
+          <p class="patch-body">
+            La culpa siente que debería motivarte. La investigación dice lo contrario: cuanta más culpa, más difícil es empezar la siguiente vez. Sube tu estrés, baja tu tolerancia. La culpa no es el freno del bucle — es el combustible.
+          </p>
+          <p class="patch-body">
+            Tratarte bien ante el fallo mejora el rendimiento futuro. No es blandura — es eficiencia. El <em>bug</em> está en el código, no en ti.
+          </p>
         </div>
       </div>
+
     </div>
-
-
   </div>
 </section>
 
-<hr class="div">
+<hr class="divider">
 
 <footer>
-  <p class="footer-quote">"Procrastinar no es ser vago.<br>Es un bug en la gestión emocional.<br>Y los bugs se arreglan."</p>
-  <p class="footer-sub">psicología_informática · episodio 01 de muchos</p>
+  <p class="footer-quote">"Procrastinar no es ser vago.<br>Es un fallo en la gestión emocional.<br>Y los fallos se arreglan."</p>
+  <div class="footer-cta">
+    <p class="footer-cta-text">Si reconoces este patrón en ti, hay forma de salir del bucle.</p>
+    <a href="#contacto" class="footer-cta-btn">Habla con nosotros</a>
+  </div>
+  <p class="footer-sub">Psicología Informática · Episodio 01</p>
 </footer>
 
 <script src="main.js"></script>
