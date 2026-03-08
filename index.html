@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tu cerebro tiene un bug · psicología_informática</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo"><span>~/</span>psicología_informática</span>
+  <span class="nav-ep">ep. 01 · procrastinación</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-tag">// episodio 01 · análisis de sistema</p>
+  <h1>Tu cerebro<br>tiene un <span class="bug-word">bug</span></h1>
+  <p class="hero-sub">
+    Llevas días sin hacer algo que sabes que tienes que hacer.
+    No es pereza. Es un bucle infinito con un fallo lógico concreto.
+    Y los fallos lógicos se arreglan.
+  </p>
+  <blockquote class="hero-quote">
+    "Sé que lo tengo que hacer, sé que lo haré, pero pierdo mucho tiempo
+    y fuerzas en excusas cuando lo podría haber hecho a la primera."
+  </blockquote>
+</div>
+
+<hr class="div">
+
+<!-- DIAGRAMA -->
+<section class="fi">
+  <div class="wrap">
+    <p class="section-label">// visualización interactiva</p>
+    <h2>El sistema en tiempo real</h2>
+    <p class="section-desc">
+      Escribe la tarea que llevas aplazando. El diagrama y el panel de información se adaptarán a tu caso concreto.
+      Después, pulsa cualquier nodo para ver qué pasa exactamente en esa fase del bucle.
+    </p>
+
+    <!-- MODE TOGGLE -->
+    <div class="mode-switch">
+      <button class="ms-btn ms-active ms-tech" id="btn-tech">&lt;/&gt; técnico</button>
+      <button class="ms-btn ms-human" id="btn-human">≡ humano</button>
+    </div>
+
+    <!-- TASK INPUT -->
+    <div class="task-form">
+      <div class="tf-comment">// define tu bucle · cuantos más datos, más personalizado el análisis</div>
+      <div class="tf-field">
+        <span class="tf-key">task</span>
+        <span class="tf-eq">=</span>
+        <input id="tf-task" class="tf-input tf-main" type="text"
+               placeholder="apuntarme a inglés, enviar el email del trabajo, ir al médico..."
+               maxlength="55"/>
+      </div>
+      <div class="tf-field">
+        <span class="tf-key">stress</span>
+        <span class="tf-eq">=</span>
+        <input id="tf-stress" class="tf-input" type="text"
+               placeholder="qué es lo que te genera estrés de esa tarea concretamente..."
+               maxlength="90"/>
+      </div>
+      <div class="tf-field">
+        <span class="tf-key">excuse</span>
+        <span class="tf-eq">=</span>
+        <input id="tf-excuse" class="tf-input" type="text"
+               placeholder="la excusa que usas para posponerla..."
+               maxlength="90"/>
+      </div>
+      <div class="tf-field">
+        <span class="tf-key">fear</span>
+        <span class="tf-eq">=</span>
+        <input id="tf-fear" class="tf-input" type="text"
+               placeholder="qué es lo que temes que pase si la haces o si sale mal..."
+               maxlength="90"/>
+      </div>
+      <div class="tf-actions">
+        <button id="task-btn" class="tf-btn">generar mi bucle →</button>
+      </div>
+      <div class="tf-feedback" id="tf-fb">Solo <code style="color:var(--cyan);font-size:0.72rem">task</code> es obligatorio. Los demás campos añaden contexto al análisis y al panel de información.</div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="diag-controls" style="margin-top:1.25rem">
+      <div class="diag-status">
+        <div class="blink-dot" id="d-dot"></div>
+        <span id="d-txt" style="font-size:0.78rem;">
+          procrastination_loop.py &nbsp;·&nbsp;
+          <span style="color:var(--red)">running · iteración <span id="d-iter">1</span></span>
+        </span>
+      </div>
+      <div class="diag-btns">
+        <button class="d-btn d-bug" id="btn-bug">Ver el bug</button>
+        <button class="d-btn" id="btn-pause">⏸ pausar</button>
+        <button class="d-btn" id="btn-fix">Romper el bucle →</button>
+      </div>
+    </div>
+
+    <!-- LIVE COUNTERS -->
+    <div class="counters-bar" id="counters-bar">
+      <div class="c-item">
+        <span class="c-label">difficulty <span class="c-label-es">(dificultad percibida)</span></span>
+        <span class="c-val" id="cv-diff" style="color:#f87171">1.0×</span>
+      </div>
+      <div class="c-item">
+        <span class="c-label">guilt <span class="c-label-es">(culpa acumulada)</span></span>
+        <span class="c-val" id="cv-guilt" style="color:#fbbf24">0.0</span>
+      </div>
+      <div class="c-item">
+        <span class="c-label">threshold <span class="c-label-es">(umbral de tolerancia)</span></span>
+        <span class="c-val" id="cv-thresh" style="color:var(--muted)">0.50</span>
+      </div>
+      <div class="c-item">
+        <span class="c-label">days_lost <span class="c-label-es">(días sin resolver)</span></span>
+        <span class="c-val" id="cv-days" style="color:#f87171">0</span>
+      </div>
+    </div>
+
+    <!-- DIAGRAM + PANEL -->
+    <div class="diag-wrap" id="diag-wrap">
+      <div class="diag-svg-container">
+        <svg id="diag" viewBox="0 0 310 590" xmlns="http://www.w3.org/2000/svg"
+             style="width:100%;display:block;max-height:72vh;">
+          <defs>
+            <marker id="af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#2d3e55"/>
+            </marker>
+            <marker id="al" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/>
+            </marker>
+            <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#22c55e"/>
+            </marker>
+            <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="4" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- loop-back spine -->
+          <g id="g-lb" style="transition:opacity 0.6s">
+            <path d="M155,562 L30,562 L30,163 L80,163"
+              stroke="#ef4444" stroke-width="1.5" fill="none"
+              stroke-dasharray="7,4" marker-end="url(#al)"/>
+            <text transform="translate(18,390) rotate(-90)" text-anchor="middle"
+              fill="#ef4444" opacity="0.6" font-family="Courier New,monospace" font-size="8">goto fase_02</text>
+          </g>
+
+          <!-- flow arrows -->
+          <line x1="155" y1="86"  x2="155" y2="136" stroke="#2d3e55" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="186" x2="155" y2="236" stroke="#2d3e55" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="286" x2="155" y2="336" stroke="#2d3e55" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="386" x2="155" y2="426" stroke="#2d3e55" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="474" x2="155" y2="514" stroke="#2d3e55" stroke-width="1.5" marker-end="url(#af)"/>
+
+          <!-- break arrows (fix mode) -->
+          <g id="g-brk" style="opacity:0;transition:opacity 0.5s 0.3s">
+            <line x1="230" y1="163" x2="268" y2="163" stroke="#22c55e" stroke-width="2" marker-end="url(#ab)"/>
+            <line x1="230" y1="261" x2="268" y2="261" stroke="#22c55e" stroke-width="2" marker-end="url(#ab)"/>
+            <line x1="230" y1="449" x2="268" y2="449" stroke="#22c55e" stroke-width="2" marker-end="url(#ab)"/>
+          </g>
+
+          <!-- patch circles (fix mode) -->
+          <g id="g-patches" style="opacity:0;transition:opacity 0.5s 0.6s">
+            <g data-node="p1" style="cursor:pointer">
+              <circle cx="283" cy="163" r="11" fill="rgba(20,83,45,0.6)" stroke="#22c55e" stroke-width="1.5"/>
+              <text x="283" y="167" fill="#4ade80" font-family="Courier New,monospace" font-size="8" font-weight="bold" text-anchor="middle">P1</text>
+            </g>
+            <g data-node="p2" style="cursor:pointer">
+              <circle cx="283" cy="261" r="11" fill="rgba(20,83,45,0.6)" stroke="#22c55e" stroke-width="1.5"/>
+              <text x="283" y="265" fill="#4ade80" font-family="Courier New,monospace" font-size="8" font-weight="bold" text-anchor="middle">P2</text>
+            </g>
+            <g data-node="p3" style="cursor:pointer">
+              <circle cx="283" cy="449" r="11" fill="rgba(20,83,45,0.6)" stroke="#22c55e" stroke-width="1.5"/>
+              <text x="283" y="453" fill="#4ade80" font-family="Courier New,monospace" font-size="8" font-weight="bold" text-anchor="middle">P3</text>
+            </g>
+          </g>
+
+          <!-- NODES -->
+          <g data-node="dis" id="nd-dis">
+            <rect class="node-rect" x="55" y="38" width="200" height="48" rx="8"
+              fill="#0b1525" stroke="#3b82f6" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
+            <text id="t-dis" x="155" y="58" fill="#3b82f6" font-family="Courier New,monospace"
+              font-size="8.5" text-anchor="middle">task_received("inglés")</text>
+            <text x="155" y="74" fill="#e2e8f0" font-family="system-ui,sans-serif"
+              font-size="12" font-weight="700" text-anchor="middle">El Disparador</text>
+            <text x="244" y="51" fill="#3b82f6" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
+          </g>
+
+          <g data-node="ame" id="nd-ame">
+            <rect class="node-rect" id="bx-ame" x="55" y="138" width="200" height="48" rx="8"
+              fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
+            <text id="t-ame" x="155" y="158" fill="#64748b" font-family="Courier New,monospace"
+              font-size="8.5" text-anchor="middle">if stress &gt; threshold</text>
+            <text x="155" y="174" fill="#e2e8f0" font-family="system-ui,sans-serif"
+              font-size="12" font-weight="700" text-anchor="middle">La Amenaza</text>
+            <text x="244" y="151" fill="#eab308" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
+          </g>
+
+          <g data-node="eva" id="nd-eva">
+            <rect class="node-rect" id="bx-eva" x="55" y="238" width="200" height="48" rx="8"
+              fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
+            <text id="t-eva" x="155" y="258" fill="#64748b" font-family="Courier New,monospace"
+              font-size="8.5" text-anchor="middle">avoid("inglés")</text>
+            <text x="155" y="274" fill="#e2e8f0" font-family="system-ui,sans-serif"
+              font-size="12" font-weight="700" text-anchor="middle">La Evasión</text>
+            <text x="244" y="251" fill="#ef4444" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
+          </g>
+
+          <g data-node="ali" id="nd-ali">
+            <rect class="node-rect" id="bx-ali" x="55" y="338" width="200" height="48" rx="8"
+              fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
+            <text id="t-ali" x="155" y="358" fill="#64748b" font-family="Courier New,monospace"
+              font-size="8.5" text-anchor="middle">release_dopamine("evasión")</text>
+            <text x="155" y="374" fill="#e2e8f0" font-family="system-ui,sans-serif"
+              font-size="12" font-weight="700" text-anchor="middle">El Alivio</text>
+            <text x="244" y="351" fill="#22c55e" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
+          </g>
+
+          <g data-node="cul" id="nd-cul">
+            <rect class="node-rect" id="bx-cul" x="55" y="426" width="200" height="48" rx="8"
+              fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
+            <text id="t-cul" x="155" y="446" fill="#64748b" font-family="Courier New,monospace"
+              font-size="8.5" text-anchor="middle">guilt += 0.1</text>
+            <text x="155" y="462" fill="#e2e8f0" font-family="system-ui,sans-serif"
+              font-size="12" font-weight="700" text-anchor="middle">La Culpa</text>
+            <text x="244" y="439" fill="#eab308" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
+          </g>
+
+          <g data-node="reb" id="nd-reb">
+            <rect class="node-rect" id="bx-reb" x="55" y="514" width="200" height="48" rx="8"
+              fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
+            <text id="t-reb" x="155" y="534" fill="#64748b" font-family="Courier New,monospace"
+              font-size="8.5" text-anchor="middle">difficulty *= 1.2</text>
+            <text x="155" y="550" fill="#e2e8f0" font-family="system-ui,sans-serif"
+              font-size="12" font-weight="700" text-anchor="middle">El Rebote</text>
+            <text x="244" y="527" fill="#ef4444" font-family="system-ui" font-size="11" opacity="0.5">ⓘ</text>
+          </g>
+
+          <!-- token -->
+          <circle id="tok" cx="155" cy="163" r="9" fill="#06b6d4" filter="url(#glow)" opacity="0.95"/>
+        </svg>
+      </div>
+
+      <!-- INFO PANEL -->
+      <div class="info-panel" id="info-panel">
+        <div class="info-panel-inner">
+          <div class="panel-head">
+            <div>
+              <div class="panel-fase" id="p-fase"></div>
+              <div class="panel-title" id="p-title"></div>
+            </div>
+            <button class="panel-close" id="panel-close">×</button>
+          </div>
+          <div id="p-code-wrap"></div>
+          <p class="panel-story" id="p-story"></p>
+          <div class="panel-vars-title" id="p-vars-title">variables · estado del sistema</div>
+          <div id="p-vars"></div>
+          <div class="panel-note" id="p-note"></div>
+        </div>
+      </div>
+    </div><!-- /diag-wrap -->
+
+    <!-- CONSOLE LOG -->
+    <div class="console-log" id="console-log">
+      <div class="console-header">&gt;_ system.log</div>
+      <div class="console-body" id="console-body">
+        <div class="log-line"><span class="log-muted">proceso iniciado · esperando iteraciones...</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- CÓMO ROMPER EL BUCLE -->
+<section class="fi">
+  <div class="wrap">
+    <p class="section-label">// fix disponible</p>
+    <h2>Cómo romper el bucle</h2>
+    <p class="section-desc">La fuerza de voluntad no es la solución — si lo fuera, ya lo habrías hecho. Tres intervenciones en tres puntos distintos. Ninguna requiere motivación.</p>
+    <div class="patches">
+      <div class="patch">
+        <div class="patch-tag">PATCH 1</div>
+        <div>
+          <div class="patch-name">task.split() · Separa la tarea de todo lo que imaginas alrededor</div>
+          <div class="patch-body">
+            El estrés no viene de la tarea en sí — viene de todo lo que tu cerebro proyecta alrededor: qué me van a decir, cómo será, qué pasa si no sé, me pondrán con gente mejor... Eso es lo que dispara la alarma. La tarea real es mucho más pequeña que la tarea imaginada.<br><br>
+            El fix: <em>no encarar todo eso de golpe</em>. Solo la primera acción concreta, la que puedes hacer ahora mismo sin que tu cerebro la detecte como amenaza. No "apuntarme a inglés" (que incluye ir, hablar, hacer la prueba, empezar clases...) sino solo "buscar el teléfono de una academia". Eso no da miedo. Y una vez en movimiento, el siguiente paso tampoco da tanto.<br><br>
+            <span class="inline-code">micro = task.split() → solo el primer paso concreto → stress &lt; threshold</span>
+          </div>
+        </div>
+      </div>
+      <div class="patch">
+        <div class="patch-tag">PATCH 2</div>
+        <div>
+          <div class="patch-name">release_dopamine("logro") · Mueve la recompensa</div>
+          <div class="patch-body">
+            El bug da dopamina por evitar. El fix la mueve al momento de empezar. Condición: que sea <em>inmediata y física</em>.<br><br>
+            "Cuando abra el libro, me pongo un café." Tu cerebro conecta esa recompensa con el acto de empezar. Con repetición, empezar compite con evitar como fuente de alivio.<br><br>
+            <span class="inline-code">reward = on_execute, not on_avoid</span>
+          </div>
+        </div>
+      </div>
+      <div class="patch">
+        <div class="patch-tag">PATCH 3</div>
+        <div>
+          <div class="patch-name">gc.collect(guilt) · Suelta la culpa</div>
+          <div class="patch-body">
+            La culpa acumulada es memoria sin liberar: sube el estrés y baja tu tolerancia. El bucle se activa cada vez con menos estímulo.<br><br>
+            Tratarte bien ante el fallo mejora el rendimiento futuro (Neff, 2012). No es blandura — es eficiencia. El bug está en el código, no en ti.<br><br>
+            <span class="inline-code">self.guilt = 0 // liberar para el próximo intento</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MICRO-TASK -->
+    <div class="micro-box" id="micro-box">
+      <div class="micro-header">// aplica el patch 1 · separa el primer paso concreto</div>
+      <div class="micro-prompt">
+        <span class="tf-key">task</span>
+        <span class="tf-eq">=</span>
+        <span class="micro-val" id="micro-task-val">"apuntarme a inglés"</span>
+      </div>
+      <div class="tf-field" style="margin-top:0.4rem">
+        <span class="tf-key">micro</span>
+        <span class="tf-eq">=</span>
+        <input id="tf-micro" class="tf-input" type="text"
+               placeholder="solo el primer paso concreto: buscar el teléfono, abrir la web..."
+               maxlength="90"/>
+      </div>
+      <div class="tf-actions">
+        <button id="micro-btn" class="tf-btn">aplicar patch →</button>
+      </div>
+      <div class="micro-result" id="micro-result"></div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="div">
+
+<footer>
+  <p class="footer-quote">"Procrastinar no es ser vago.<br>Es un bug en la gestión emocional.<br>Y los bugs se arreglan."</p>
+  <p class="footer-sub">psicología_informática · episodio 01 de muchos</p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
