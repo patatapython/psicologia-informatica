@@ -95,6 +95,10 @@ h2 {
 .hero-author-handle {
   color: var(--blue);
   font-weight: 600;
+  text-decoration: none;
+}
+.hero-author-handle:hover {
+  text-decoration: underline;
 }
 
 /* STORY BLOCK */
