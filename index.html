@@ -56,26 +56,24 @@
                placeholder="apuntarme a inglés, enviar el email del trabajo, ir al médico..."
                maxlength="55"/>
       </div>
-      <div class="tf-field">
-        <span class="tf-key">stress</span>
-        <span class="tf-eq">=</span>
-        <input id="tf-stress" class="tf-input" type="text"
-               placeholder="qué es lo que te genera estrés de esa tarea concretamente..."
-               maxlength="90"/>
+      <div class="chip-group">
+        <span class="chip-label">¿qué te bloquea?</span>
+        <div class="chips" id="chips-block">
+          <button class="chip" data-val="no sé qué va a pasar">No sé qué va a pasar</button>
+          <button class="chip" data-val="me van a juzgar">Me van a juzgar</button>
+          <button class="chip" data-val="no estoy preparado">No estoy preparado</button>
+          <button class="chip" data-val="es demasiado">Es demasiado</button>
+          <button class="chip" data-val="voy a fracasar">Voy a fracasar</button>
+        </div>
       </div>
-      <div class="tf-field">
-        <span class="tf-key">excuse</span>
-        <span class="tf-eq">=</span>
-        <input id="tf-excuse" class="tf-input" type="text"
-               placeholder="la excusa que usas para posponerla..."
-               maxlength="90"/>
-      </div>
-      <div class="tf-field">
-        <span class="tf-key">fear</span>
-        <span class="tf-eq">=</span>
-        <input id="tf-fear" class="tf-input" type="text"
-               placeholder="qué es lo que temes que pase si la haces o si sale mal..."
-               maxlength="90"/>
+      <div class="chip-group">
+        <span class="chip-label">¿cuál es tu excusa?</span>
+        <div class="chips" id="chips-excuse">
+          <button class="chip" data-val="ya lo haré mañana">Ya lo haré mañana</button>
+          <button class="chip" data-val="hoy no puedo, tengo cosas">Hoy no puedo</button>
+          <button class="chip" data-val="primero necesito organizarme">Primero necesito organizarme</button>
+          <button class="chip" data-val="no es buen momento">No es buen momento</button>
+        </div>
       </div>
       <div class="tf-actions">
         <button id="task-btn" class="tf-btn">generar mi bucle →</button>
@@ -296,8 +294,18 @@
           <div class="patch-name">task.split() · Separa la tarea de todo lo que imaginas alrededor</div>
           <div class="patch-body">
             El estrés no viene de la tarea en sí — viene de todo lo que tu cerebro proyecta alrededor: qué me van a decir, cómo será, qué pasa si no sé, me pondrán con gente mejor... Eso es lo que dispara la alarma. La tarea real es mucho más pequeña que la tarea imaginada.<br><br>
-            El fix: <em>no encarar todo eso de golpe</em>. Solo la primera acción concreta, la que puedes hacer ahora mismo sin que tu cerebro la detecte como amenaza. No "apuntarme a inglés" (que incluye ir, hablar, hacer la prueba, empezar clases...) sino solo "buscar el teléfono de una academia". Eso no da miedo. Y una vez en movimiento, el siguiente paso tampoco da tanto.<br><br>
+            El fix: <em>no encarar todo eso de golpe</em>. Solo la primera acción concreta, la que puedes hacer ahora mismo sin que tu cerebro la detecte como amenaza.<br><br>
             <span class="inline-code">micro = task.split() → solo el primer paso concreto → stress &lt; threshold</span>
+          </div>
+          <div class="patch-example">
+            <div class="patch-example-title">// ejemplo: te da miedo conducir</div>
+            <div class="patch-steps">
+              <div class="patch-step"><span class="patch-step-n">01</span> Coger las llaves y bajar al coche. Solo eso.</div>
+              <div class="patch-step"><span class="patch-step-n">02</span> Sentarte dentro, poner el cinturón, arrancar. No irte — solo arrancar.</div>
+              <div class="patch-step"><span class="patch-step-n">03</span> Salir del garaje y volver a entrar. Ya has conducido.</div>
+              <div class="patch-step"><span class="patch-step-n">04</span> Mañana: dar la vuelta a la manzana. El paso 03 ya no da miedo.</div>
+            </div>
+            <div class="patch-example-note">Cada paso es tan pequeño que tu cerebro no lo detecta como amenaza. Cuando quieres darte cuenta, ya estás en movimiento.</div>
           </div>
         </div>
       </div>
@@ -325,26 +333,6 @@
       </div>
     </div>
 
-    <!-- MICRO-TASK -->
-    <div class="micro-box" id="micro-box">
-      <div class="micro-header">// aplica el patch 1 · separa el primer paso concreto</div>
-      <div class="micro-prompt">
-        <span class="tf-key">task</span>
-        <span class="tf-eq">=</span>
-        <span class="micro-val" id="micro-task-val">"apuntarme a inglés"</span>
-      </div>
-      <div class="tf-field" style="margin-top:0.4rem">
-        <span class="tf-key">micro</span>
-        <span class="tf-eq">=</span>
-        <input id="tf-micro" class="tf-input" type="text"
-               placeholder="solo el primer paso concreto: buscar el teléfono, abrir la web..."
-               maxlength="90"/>
-      </div>
-      <div class="tf-actions">
-        <button id="micro-btn" class="tf-btn">aplicar patch →</button>
-      </div>
-      <div class="micro-result" id="micro-result"></div>
-    </div>
 
   </div>
 </section>

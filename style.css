@@ -67,6 +67,23 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 0.7
 .tf-input:focus { border-color: var(--cyan); }
 .tf-input::placeholder { color: #4a5a72; }
 .tf-input.tf-main { font-size: 0.9rem; }
+/* CHIPS */
+.chip-group { margin-bottom: 0.7rem; }
+.chip-label {
+  font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+  display: block; margin-bottom: 0.4rem;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip {
+  font-family: var(--mono); font-size: 0.75rem; padding: 0.35rem 0.75rem;
+  background: var(--bg3); border: 1px solid var(--border); border-radius: 3px;
+  color: var(--muted); cursor: pointer; transition: all 0.15s; white-space: nowrap;
+}
+.chip:hover { border-color: var(--cyan); color: var(--cyan); }
+.chip.selected {
+  background: rgba(34,211,238,0.1); border-color: var(--cyan); color: var(--cyan);
+}
+
 .tf-actions { margin-top: 0.9rem; display: flex; justify-content: flex-end; }
 .tf-btn {
   font-family: var(--mono); font-size: 0.8rem; padding: 0.55rem 1.1rem;
@@ -257,6 +274,30 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 0.7
 .patch-body { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
 .inline-code { font-family: var(--mono); font-size: 0.78rem; color: var(--cyan); background: var(--bg3); padding: 0.1rem 0.4rem; border-radius: 3px; }
 
+/* PATCH EXAMPLE */
+.patch-example {
+  margin-top: 1rem; padding: 1rem 1.25rem;
+  background: var(--bg3); border: 1px solid var(--border); border-radius: 4px;
+}
+.patch-example-title {
+  font-family: var(--mono); font-size: 0.72rem; color: var(--cyan);
+  margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;
+}
+.patch-steps { display: flex; flex-direction: column; gap: 0.4rem; }
+.patch-step {
+  font-size: 0.85rem; color: var(--text); line-height: 1.5;
+  padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.patch-step:last-child { border-bottom: none; }
+.patch-step-n {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--green);
+  margin-right: 0.6rem; font-weight: 700;
+}
+.patch-example-note {
+  margin-top: 0.75rem; font-size: 0.8rem; color: var(--muted);
+  font-style: italic; line-height: 1.5;
+}
+
 /* FOOTER */
 footer { border-top: 1px solid var(--border); padding: 4rem 2rem; text-align: center; }
 .footer-quote { font-size: 1.1rem; font-weight: 600; max-width: 480px; margin: 0 auto 1rem; line-height: 1.5; }
@@ -274,13 +315,6 @@ footer { border-top: 1px solid var(--border); padding: 4rem 2rem; text-align: ce
 .log-muted { color: var(--dim); }
 @keyframes logFade { from { opacity:0; transform:translateY(4px) } to { opacity:1; transform:none } }
 
-/* MICRO-TASK BOX */
-.micro-box { border: 1px solid rgba(6,182,212,0.3); background: var(--bg2); padding: 1.5rem 2rem; margin-top: 1.5rem; }
-.micro-header { font-family: var(--mono); font-size: 0.78rem; color: var(--cyan); margin-bottom: 1rem; }
-.micro-prompt { display: flex; gap: 0.6rem; align-items: center; margin-bottom: 0.3rem; }
-.micro-val { font-family: var(--mono); font-size: 0.85rem; color: var(--green); }
-.micro-result { margin-top: 0.8rem; font-family: var(--mono); font-size: 0.78rem; line-height: 1.8; }
-.micro-result .mr-line { animation: logFade 0.3s ease; }
 
 @media (max-width: 700px) {
   .diag-wrap { flex-direction: column; }

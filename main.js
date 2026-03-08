@@ -217,17 +217,27 @@ let INFO = makeInfo(currentTask, currentStress, currentExcuse, currentFear);
 // TASK INPUT
 // ══════════════════════════════════════════════════════════
 const tfTask   = document.getElementById('tf-task');
-const tfStress = document.getElementById('tf-stress');
-const tfExcuse = document.getElementById('tf-excuse');
-const tfFear   = document.getElementById('tf-fear');
 const taskBtn  = document.getElementById('task-btn');
 const tfFb     = document.getElementById('tf-fb');
 
+// ── CHIPS ──
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => chip.classList.toggle('selected'));
+});
+
+function getChipValues(containerId) {
+  return Array.from(document.querySelectorAll(`#${containerId} .chip.selected`))
+    .map(c => c.dataset.val);
+}
+
 function applyTask() {
-  const t      = (tfTask.value   || '').trim() || 'apuntarme a inglés';
-  const stress = (tfStress.value || '').trim();
-  const excuse = (tfExcuse.value || '').trim();
-  const fear   = (tfFear.value   || '').trim();
+  const t      = (tfTask.value || '').trim() || 'apuntarme a inglés';
+  const blocks = getChipValues('chips-block');
+  const excuses = getChipValues('chips-excuse');
+
+  const stress = blocks.join(', ');
+  const excuse = excuses.join(', ');
+  const fear   = blocks.join(', '); // same source — stress and fear overlap
 
   currentTask   = t;
   currentStress = stress;
@@ -245,22 +255,16 @@ function applyTask() {
   document.getElementById('t-cul').textContent = 'guilt += 0.1';
   document.getElementById('t-reb').textContent = 'difficulty *= 1.2';
 
-  // Actualizar micro-task display
-  const microVal = document.getElementById('micro-task-val');
-  if (microVal) microVal.textContent = `"${t}"`;
-
   // Refrescar panel si está abierto
   if (currentPanelNode) renderPanel(currentPanelNode);
 
-  const ctx = [stress, excuse, fear].filter(Boolean).length;
-  tfFb.innerHTML = `bucle generado para: <strong style="color:var(--text)">"${t}"</strong>${ctx ? ` · ${ctx} variable${ctx > 1 ? 's' : ''} contextual${ctx > 1 ? 'es' : ''}` : ' · añade más campos para mayor detalle'}`;
+  const chipCount = blocks.length + excuses.length;
+  tfFb.innerHTML = `bucle generado para: <strong style="color:var(--text)">"${t}"</strong>${chipCount ? ` · ${chipCount} variable${chipCount > 1 ? 's' : ''} seleccionada${chipCount > 1 ? 's' : ''}` : ' · selecciona chips para personalizar el análisis'}`;
   tfFb.className = 'tf-feedback ok';
 }
 
 taskBtn.addEventListener('click', applyTask);
-[tfTask, tfStress, tfExcuse, tfFear].forEach(el => {
-  el.addEventListener('keydown', e => { if (e.key === 'Enter') applyTask(); });
-});
+tfTask.addEventListener('keydown', e => { if (e.key === 'Enter') applyTask(); });
 
 // ══════════════════════════════════════════════════════════
 // MODE TOGGLE
@@ -709,41 +713,3 @@ function clearLog() {
   updateCounters();
 })();
 
-// ══════════════════════════════════════════════════════════
-// MICRO-TASK
-// ══════════════════════════════════════════════════════════
-(function () {
-  const microBtn    = document.getElementById('micro-btn');
-  const tfMicro     = document.getElementById('tf-micro');
-  const microResult = document.getElementById('micro-result');
-  if (!microBtn || !tfMicro || !microResult) return;
-
-  microBtn.addEventListener('click', () => {
-    const micro = (tfMicro.value || '').trim();
-    if (!micro) {
-      microResult.innerHTML = '<span style="color:var(--red)">&gt; error: define tu micro-paso primero</span>';
-      return;
-    }
-
-    const short = micro.length > 35 ? micro.slice(0, 33) + '…' : micro;
-    microResult.innerHTML = '';
-
-    const lines = [
-      { text: `stress("${short}") = 0.2`, color: 'var(--cyan)', delay: 0 },
-      { text: '0.2 < threshold(0.50) → False', color: 'var(--green)', delay: 400 },
-      { text: 'alarma no activada · execute() disponible', color: 'var(--green)', delay: 800 },
-      { text: 'el bucle no arranca. ya puedes empezar.', color: 'var(--green)', delay: 1200 },
-    ];
-
-    lines.forEach(l => {
-      setTimeout(() => {
-        const div = document.createElement('div');
-        div.className = 'mr-line';
-        div.innerHTML = `<span style="color:${l.color}">&gt; ${l.text}</span>`;
-        microResult.appendChild(div);
-      }, l.delay);
-    });
-  });
-
-  tfMicro.addEventListener('keydown', e => { if (e.key === 'Enter') microBtn.click(); });
-})();
