@@ -93,6 +93,7 @@
         </span>
       </div>
       <div class="diag-btns">
+        <button class="d-btn d-tour" id="btn-tour">Paso a paso →</button>
         <button class="d-btn d-bug" id="btn-bug">Ver el bug</button>
         <button class="d-btn" id="btn-pause">⏸ pausar</button>
         <button class="d-btn" id="btn-fix">Romper el bucle →</button>
@@ -126,7 +127,7 @@
              style="width:100%;display:block;max-height:72vh;">
           <defs>
             <marker id="af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-              <path d="M0,0 L10,5 L0,10 z" fill="#2d3e55"/>
+              <path d="M0,0 L10,5 L0,10 z" fill="#3d5570"/>
             </marker>
             <marker id="al" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
               <path d="M0,0 L10,5 L0,10 z" fill="#ef4444"/>
@@ -150,11 +151,11 @@
           </g>
 
           <!-- flow arrows -->
-          <line x1="155" y1="86"  x2="155" y2="136" stroke="#2d3e55" stroke-width="1.5" marker-end="url(#af)"/>
-          <line x1="155" y1="186" x2="155" y2="236" stroke="#2d3e55" stroke-width="1.5" marker-end="url(#af)"/>
-          <line x1="155" y1="286" x2="155" y2="336" stroke="#2d3e55" stroke-width="1.5" marker-end="url(#af)"/>
-          <line x1="155" y1="386" x2="155" y2="426" stroke="#2d3e55" stroke-width="1.5" marker-end="url(#af)"/>
-          <line x1="155" y1="474" x2="155" y2="514" stroke="#2d3e55" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="86"  x2="155" y2="136" stroke="#3d5570" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="186" x2="155" y2="236" stroke="#3d5570" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="286" x2="155" y2="336" stroke="#3d5570" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="386" x2="155" y2="426" stroke="#3d5570" stroke-width="1.5" marker-end="url(#af)"/>
+          <line x1="155" y1="474" x2="155" y2="514" stroke="#3d5570" stroke-width="1.5" marker-end="url(#af)"/>
 
           <!-- break arrows (fix mode) -->
           <g id="g-brk" style="opacity:0;transition:opacity 0.5s 0.3s">
@@ -193,7 +194,7 @@
           <g data-node="ame" id="nd-ame">
             <rect class="node-rect" id="bx-ame" x="55" y="138" width="200" height="48" rx="8"
               fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
-            <text id="t-ame" x="155" y="158" fill="#64748b" font-family="Courier New,monospace"
+            <text id="t-ame" x="155" y="158" fill="#8899b0" font-family="Courier New,monospace"
               font-size="8.5" text-anchor="middle">if stress &gt; threshold</text>
             <text x="155" y="174" fill="#e2e8f0" font-family="system-ui,sans-serif"
               font-size="12" font-weight="700" text-anchor="middle">La Amenaza</text>
@@ -203,7 +204,7 @@
           <g data-node="eva" id="nd-eva">
             <rect class="node-rect" id="bx-eva" x="55" y="238" width="200" height="48" rx="8"
               fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
-            <text id="t-eva" x="155" y="258" fill="#64748b" font-family="Courier New,monospace"
+            <text id="t-eva" x="155" y="258" fill="#8899b0" font-family="Courier New,monospace"
               font-size="8.5" text-anchor="middle">avoid("inglés")</text>
             <text x="155" y="274" fill="#e2e8f0" font-family="system-ui,sans-serif"
               font-size="12" font-weight="700" text-anchor="middle">La Evasión</text>
@@ -213,7 +214,7 @@
           <g data-node="ali" id="nd-ali">
             <rect class="node-rect" id="bx-ali" x="55" y="338" width="200" height="48" rx="8"
               fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
-            <text id="t-ali" x="155" y="358" fill="#64748b" font-family="Courier New,monospace"
+            <text id="t-ali" x="155" y="358" fill="#8899b0" font-family="Courier New,monospace"
               font-size="8.5" text-anchor="middle">release_dopamine("evasión")</text>
             <text x="155" y="374" fill="#e2e8f0" font-family="system-ui,sans-serif"
               font-size="12" font-weight="700" text-anchor="middle">El Alivio</text>
@@ -223,7 +224,7 @@
           <g data-node="cul" id="nd-cul">
             <rect class="node-rect" id="bx-cul" x="55" y="426" width="200" height="48" rx="8"
               fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
-            <text id="t-cul" x="155" y="446" fill="#64748b" font-family="Courier New,monospace"
+            <text id="t-cul" x="155" y="446" fill="#8899b0" font-family="Courier New,monospace"
               font-size="8.5" text-anchor="middle">guilt += 0.1</text>
             <text x="155" y="462" fill="#e2e8f0" font-family="system-ui,sans-serif"
               font-size="12" font-weight="700" text-anchor="middle">La Culpa</text>
@@ -233,7 +234,7 @@
           <g data-node="reb" id="nd-reb">
             <rect class="node-rect" id="bx-reb" x="55" y="514" width="200" height="48" rx="8"
               fill="#0b1525" stroke="#475569" stroke-width="1.5" style="transition:stroke 0.3s,fill 0.3s,stroke-width 0.3s"/>
-            <text id="t-reb" x="155" y="534" fill="#64748b" font-family="Courier New,monospace"
+            <text id="t-reb" x="155" y="534" fill="#8899b0" font-family="Courier New,monospace"
               font-size="8.5" text-anchor="middle">difficulty *= 1.2</text>
             <text x="155" y="550" fill="#e2e8f0" font-family="system-ui,sans-serif"
               font-size="12" font-weight="700" text-anchor="middle">El Rebote</text>
@@ -260,6 +261,11 @@
           <div class="panel-vars-title" id="p-vars-title">variables · estado del sistema</div>
           <div id="p-vars"></div>
           <div class="panel-note" id="p-note"></div>
+          <div class="panel-nav" id="panel-nav">
+            <button class="panel-nav-btn" id="pnav-prev">&larr; Anterior</button>
+            <span class="panel-nav-pos" id="pnav-pos"></span>
+            <button class="panel-nav-btn panel-nav-next" id="pnav-next">Siguiente &rarr;</button>
+          </div>
         </div>
       </div>
     </div><!-- /diag-wrap -->

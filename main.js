@@ -268,6 +268,14 @@ taskBtn.addEventListener('click', applyTask);
 let techMode = true;
 let currentPanelNode = null;
 
+// ══════════════════════════════════════════════════════════
+// TOUR / PANEL NAVIGATION
+// ══════════════════════════════════════════════════════════
+const PHASE_ORDER = ['dis', 'ame', 'eva', 'ali', 'cul', 'reb'];
+const PATCH_ORDER = ['p1', 'p2', 'p3'];
+let tourActive = false;
+let autoOpened = false;
+
 const btnTech  = document.getElementById('btn-tech');
 const btnHuman = document.getElementById('btn-human');
 
@@ -292,6 +300,46 @@ const pVarsTitle = document.getElementById('p-vars-title');
 const pVars      = document.getElementById('p-vars');
 const pNote      = document.getElementById('p-note');
 const panelClose = document.getElementById('panel-close');
+
+function updatePanelNav(nodeId) {
+  const prevBtn = document.getElementById('pnav-prev');
+  const nextBtn = document.getElementById('pnav-next');
+  const posEl   = document.getElementById('pnav-pos');
+  const navEl   = document.getElementById('panel-nav');
+
+  const phaseIdx = PHASE_ORDER.indexOf(nodeId);
+  const patchIdx = PATCH_ORDER.indexOf(nodeId);
+  let order, idx;
+
+  if (phaseIdx !== -1) {
+    order = PHASE_ORDER; idx = phaseIdx;
+    posEl.textContent = `${idx + 1} / ${order.length}`;
+  } else if (patchIdx !== -1) {
+    order = PATCH_ORDER; idx = patchIdx;
+    posEl.textContent = `patch ${idx + 1} / ${order.length}`;
+  } else {
+    navEl.style.display = 'none';
+    return;
+  }
+
+  navEl.style.display = 'flex';
+  prevBtn.disabled = idx === 0;
+  nextBtn.disabled = idx === order.length - 1;
+  prevBtn.onclick = () => { if (idx > 0) openPanel(order[idx - 1]); };
+  nextBtn.onclick = () => { if (idx < order.length - 1) openPanel(order[idx + 1]); };
+}
+
+function highlightPatchNode(nodeId) {
+  PATCH_ORDER.forEach(pid => {
+    const g = document.querySelector(`#g-patches [data-node="${pid}"]`);
+    if (!g) return;
+    const circle = g.querySelector('circle');
+    const on = pid === nodeId;
+    circle.setAttribute('fill', on ? 'rgba(20,83,45,0.85)' : 'rgba(20,83,45,0.6)');
+    circle.setAttribute('stroke-width', on ? '2.5' : '1.5');
+    circle.setAttribute('r', on ? '13' : '11');
+  });
+}
 
 function renderPanel(nodeId) {
   const d = INFO[nodeId];
@@ -326,16 +374,19 @@ function renderPanel(nodeId) {
 
   pNote.textContent = d.note;
   panel.classList.add('open');
+  updatePanelNav(nodeId);
 }
 
 function openPanel(nodeId) {
   currentPanelNode = nodeId;
   renderPanel(nodeId);
+  highlightPatchNode(PATCH_ORDER.includes(nodeId) ? nodeId : null);
 }
 
 panelClose.addEventListener('click', () => {
   panel.classList.remove('open');
   currentPanelNode = null;
+  autoOpened = true;
 });
 document.querySelectorAll('#diag [data-node]').forEach(g => {
   g.addEventListener('click', () => openPanel(g.dataset.node));
@@ -436,7 +487,7 @@ function clearLog() {
   function highlight(id) {
     Object.keys(BX).forEach(k => {
       const on = k === id;
-      BX[k].el.setAttribute('stroke',       on ? BX[k].col : '#475569');
+      BX[k].el.setAttribute('stroke',       on ? BX[k].col : '#536b83');
       BX[k].el.setAttribute('stroke-width', on ? '2.5'     : '1.5');
       BX[k].el.setAttribute('fill',         on ? 'rgba(30,46,70,0.85)' : '#0b1525');
     });
@@ -543,6 +594,7 @@ function clearLog() {
     gLb.style.opacity    = '1';
     gBrk.style.opacity   = '0';
     gPatch.style.opacity = '0';
+    gPatch.classList.remove('visible');
     dDot.style.background = 'var(--red)';
     dDot.style.animation  = 'pulse-dot 1.2s ease-in-out infinite';
     dTxt.innerHTML = 'procrastination_loop.py &nbsp;·&nbsp; <span style="color:var(--red)">running · iteración <span id="d-iter">1</span></span>';
@@ -555,7 +607,7 @@ function clearLog() {
     btnBug.classList.add('d-bug');
     btnFix.classList.remove('d-fix');
     Object.keys(BX).forEach(k => {
-      BX[k].el.setAttribute('stroke', '#475569');
+      BX[k].el.setAttribute('stroke', '#536b83');
       BX[k].el.setAttribute('fill', '#0b1525');
     });
   }
@@ -572,6 +624,7 @@ function clearLog() {
     tok.setAttribute('opacity', '0');
     gBrk.style.opacity   = '1';
     gPatch.style.opacity = '1';
+    gPatch.classList.add('visible');
     dDot.style.background = 'var(--green)';
     dDot.style.animation  = 'none';
     dTxt.innerHTML = '<span style="color:var(--green)">loop broken · aplicando patches…</span>';
@@ -590,19 +643,66 @@ function clearLog() {
     animateReset(() => {
       dTxt.innerHTML = '<span style="color:var(--green)">loop broken · patches applied · iterations saved: ∞</span>';
       ['ame', 'eva', 'cul'].forEach(k => {
-        BX[k].el.setAttribute('stroke',       '#22c55e');
+        BX[k].el.setAttribute('stroke',       '#34d399');
         BX[k].el.setAttribute('stroke-width', '2');
         BX[k].el.setAttribute('fill',         'rgba(20,83,45,0.2)');
       });
+      setTimeout(() => openPanel('p1'), 400);
     });
 
     btnFix.classList.add('d-fix');
     btnBug.classList.remove('d-bug');
   }
 
-  btnBug.addEventListener('click', startBug);
+  // ── TOUR ──
+  const btnTour = document.getElementById('btn-tour');
+
+  function startTour() {
+    tourActive = true;
+    btnTour.classList.add('touring');
+    btnTour.textContent = 'Salir del tour';
+    if (isBug && !isPaused) {
+      isPaused = true;
+      if (tid) clearTimeout(tid);
+      cancelAnimationFrame(rid);
+      btnPause.textContent = '▶ reanudar';
+      btnPause.classList.add('d-paused');
+    }
+    openPanel('dis');
+  }
+
+  function endTour() {
+    if (!tourActive) return;
+    tourActive = false;
+    btnTour.classList.remove('touring');
+    btnTour.textContent = 'Paso a paso →';
+  }
+
+  btnTour.addEventListener('click', () => {
+    if (tourActive) {
+      endTour();
+      if (isBug && isPaused) pauseLoop();
+    } else {
+      startTour();
+    }
+  });
+
+  btnBug.addEventListener('click', () => { endTour(); startBug(); });
   btnPause.addEventListener('click', pauseLoop);
-  btnFix.addEventListener('click', breakLoop);
+  btnFix.addEventListener('click', () => { endTour(); breakLoop(); });
+
+  // ── AUTO-OPEN on viewport ──
+  const diagWrap = document.getElementById('diag-wrap');
+  const diagObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !autoOpened && !currentPanelNode) {
+        autoOpened = true;
+        diagObs.disconnect();
+        setTimeout(() => openPanel('dis'), 600);
+      }
+    });
+  }, { threshold: 0.3 });
+  diagObs.observe(diagWrap);
 
   rid = requestAnimationFrame(rafLoop);
   tid = setTimeout(advance, 900);
